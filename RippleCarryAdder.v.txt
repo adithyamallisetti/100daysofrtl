@@ -1,0 +1,57 @@
+RippleCarryAdder.v
+////DATE:-09/01/2024
+////4-BIT RIPPLE CARRY ADDER
+module FA(input A,B,Cin,
+output Sum,Carry);
+assign Sum=A^B^Cin;
+assign Carry=A&B|B&Cin|Cin&A;
+endmodule
+
+module Ripplecarry_Adder(input [3:0] A,
+input [3:0] B,
+input Cin, output [4:0] Sum);
+wire w1,w2,w3;
+FA M1(.A(A[0]),.B(B[0]),.Cin(Cin),.Carry(w1),.Sum(Sum[0]));
+FA M2(.A(A[1]),.B(B[1]),.Cin(w1),.Carry(w2),.Sum(Sum[1]));
+FA M3(.A(A[2]),.B(B[2]),.Cin(w2),.Carry(w3),.Sum(Sum[2]));
+FA M4(.A(A[3]),.B(B[3]),.Cin(w3),.Carry(Sum[4]),.Sum(Sum[3]));
+endmodule
+
+
+Testbench:-
+module Ripplecarry_tb();
+reg [3:0]A,B;
+reg Cin;
+wire [4:0] Sum;
+Ripplecarry_Adder dut (.A(A), .B(B), .Cin(Cin), .Sum(Sum));
+initial begin
+A=4'b0000; B=4'b0000; Cin=0;
+#10;
+$display("A=%d,B=%d,Cin=%b,Sum=%d",A,B,Cin,Sum);
+A=4'b0001; B=4'b1000; Cin=1;
+#10;
+$display("A=%d,B=%d,Cin=%b,Sum=%d",A,B,Cin,Sum);
+A=4'b0010; B=4'b0010; Cin=1;
+#10;
+$display("A=%d,B=%d,Cin=%b,Sum=%d",A,B,Cin,Sum);
+A=4'b0111; B=4'b0111; Cin=0;
+#10;
+$display("A=%d,B=%d,Cin=%b,Sum=%d",A,B,Cin,Sum);
+A=4'b0111; B=4'b1000; Cin=0;
+#10;
+$display("A=%d,B=%d,Cin=%b,Sum=%d",A,B,Cin,Sum);
+A=4'b0001; B=4'b1000; Cin=0;
+#10;
+$display("A=%d,B=%d,Cin=%b,Sum=%d",A,B,Cin,Sum);
+A=4'b0011; B=4'b1100; Cin=1;
+#10;
+$display("A=%d,B=%d,Cin=%b,Sum=%d",A,B,Cin,Sum);
+A=4'b1111; B=4'b1111; Cin=0;
+#10;
+$display("A=%d,B=%d,Cin=%b,Sum=%d",A,B,Cin,Sum);
+A=4'b0111; B=4'b0011; Cin=0;
+#10;
+$display("A=%d,B=%d,Cin=%b,Sum=%d",A,B,Cin,Sum);
+$finish();
+end
+endmodule

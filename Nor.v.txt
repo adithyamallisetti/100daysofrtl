@@ -1,0 +1,27 @@
+Nor.v
+///DATE:-02/01/2024
+///Gate level Modelling
+module Nor_Gate(input a,b,output y_not,
+y_or,y_and,y_nand,y_xor,y_xnor);//Port declaration
+wire [12:0] W; //wire declaration
+nor g1(y_not,a,a);//NOT GATE
+nor g2(W[0],a,b);
+nor g3(y_or,W[0],W[0]);//OR GATE
+nor g4(W[1],a,a);
+nor g5(W[2],b,b);
+nor g6(y_and,W[1],W[2]);//AND GATE
+nor g7(W[3],a,a);
+nor g8(W[4],b,b);
+nor g9(W[5],W[3],W[4]); 
+nor g10(y_nand,W[5],W[5]);//NAND GATE
+nor g11(W[6],a,b); 
+nor g12(W[7],a,W[6]);
+nor g13(W[8],b,W[6]);
+nor g14(y_xnor,W[7],W[8]);//XNOR GATE
+nor g15(W[9],a,b);  
+nor g16(W[10],a,W[9]);
+nor g17(W[11],b,W[9]);   
+nor g18(W[12],W[10],W[11]);  
+nor g19(y_xor,W[12],W[12]); //XOR GATE  
+endmodule
+ 

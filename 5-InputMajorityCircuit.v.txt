@@ -1,0 +1,62 @@
+5-InputMajorityCircuit.v
+////DATE:-04/01/2024
+////5-InputMajorityCircuit
+module Fiveinput_MajorityCircuit( input A,B,C,D,E,
+output Z);
+wire [9:0] W;
+and g1(W[0],A,C,D);
+and g2(W[1],B,D,E);
+and g3(W[2],A,B,E);
+and g4(W[3],A,B,C);
+and g5(W[4],A,D,E);
+and g6(W[5],A,C,E);
+and g7(W[6],B,C,D);
+and g8(W[7],B,C,E);
+and g9(W[8],C,D,E);
+and g10(W[9],B,D,E);
+assign Z=W[0]|W[1]|W[2]|W[3]|W[4]|W[5]|W[6]|W[7]|W[8]|W[9];
+endmodule
+
+///DATE:-04/01/2024
+////5-InputMajorityCircuit
+module Fiveinput_MajorityCircuit_tb();
+reg A,B,C,D,E;
+wire Z;
+Fiveinput_MajorityCircuit dut( A,B,C,D,E,
+ Z);
+initial begin
+A=0;B=0;C=0;D=0;E=0;
+#10;
+$display("A=%b,B=%b,C=%b,D=%b,E=%b,Z=%b",A,B,C,D,E,Z);
+A=1;B=0;C=1;D=1;E=0;
+#10;
+$display("A=%b,B=%b,C=%b,D=%b,E=%b,Z=%b",A,B,C,D,E,Z);
+A=1;B=1;C=1;D=1;E=0;
+#10;
+$display("A=%b,B=%b,C=%b,D=%b,E=%b,Z=%b",A,B,C,D,E,Z);
+A=0;B=0;C=1;D=1;E=0;
+#10;
+$display("A=%b,B=%b,C=%b,D=%b,E=%b,Z=%b",A,B,C,D,E,Z);
+A=1;B=1;C=1;D=1;E=1;
+#10;
+$display("A=%b,B=%b,C=%b,D=%b,E=%b,Z=%b",A,B,C,D,E,Z);
+A=1;B=0;C=1;D=1;E=0;
+#10;
+$display("A=%b,B=%b,C=%b,D=%b,E=%b,Z=%b",A,B,C,D,E,Z);
+A=1;B=0;C=0;D=1;E=0;
+#10;
+$display("A=%b,B=%b,C=%b,D=%b,E=%b,Z=%b",A,B,C,D,E,Z);
+A=1;B=0;C=1;D=1;E=1;
+#10;
+$display("A=%b,B=%b,C=%b,D=%b,E=%b,Z=%b",A,B,C,D,E,Z);
+A=0;B=0;C=0;D=0;E=1;
+#10;
+$display("A=%b,B=%b,C=%b,D=%b,E=%b,Z=%b",A,B,C,D,E,Z);
+end
+initial begin
+#100;
+$finish();
+end
+endmodule
+
+

@@ -1,0 +1,52 @@
+FullAdder.v
+///DATE:-07/01/2024
+////Full ADDER Using GatelevelModelling
+module Fulladder(input A,B,C,
+output Sum,Carry);
+wire w1,w2,w3,w4;
+xor g1(w1,A,B);
+xor g2(Sum,w1,C);
+and g3(w2,A,B);
+and g4(w3,B,C);
+and g5(w4,C,A);
+or g6(Carry,w2,w3,w4);
+endmodule
+
+
+Testbench:-
+module Fulladdder_tb();
+reg A,B,C;
+wire Sum,Carry;
+Fulladder dut(A,B,C,
+Sum,Carry);
+initial begin
+A=0;B=0;C=0;
+#10;
+$display("A=%b,B=%b,C=%b,Sum=%b,Carry=%b",A,B,C,Sum,Carry);
+A=0;B=0;C=1;
+#10;
+$display("A=%b,B=%b,C=%b,Sum=%b,Carry=%b",A,B,C,Sum,Carry);
+A=0;B=1;C=0;
+#10;
+$display("A=%b,B=%b,C=%b,Sum=%b,Carry=%b",A,B,C,Sum,Carry);
+A=0;B=1;C=1;
+#10;
+$display("A=%b,B=%b,C=%b,Sum=%b,Carry=%b",A,B,C,Sum,Carry);
+A=1;B=0;C=0;
+#10;
+$display("A=%b,B=%b,C=%b,Sum=%b,Carry=%b",A,B,C,Sum,Carry);
+A=1;B=0;C=1;
+#10;
+$display("A=%b,B=%b,C=%b,Sum=%b,Carry=%b",A,B,C,Sum,Carry);
+A=1;B=1;C=0;
+#10;
+$display("A=%b,B=%b,C=%b,Sum=%b,Carry=%b",A,B,C,Sum,Carry);
+A=1;B=1;C=1;
+#10;
+$display("A=%b,B=%b,C=%b,Sum=%b,Carry=%b",A,B,C,Sum,Carry);
+end
+initial begin
+#90;
+$finish;
+end
+endmodule

@@ -1,0 +1,53 @@
+FA using HA.v
+///DATE:-08/01/2024
+////Implementation of FULLADDER using HalfAdder
+module HA(input A,B,
+output S,C);
+wire w1,w2;
+xor g1(S,A,B);
+and g2(C,A,B);
+endmodule
+
+module FAusingHA(input A,B,Cin,
+output Sum,Carry);
+wire S,C,w3;
+HA M1(.A(A),.B(B),.S(S),.C(C));
+HA M2(.A(S),.B(Cin),.S(Sum),.C(w3));
+or g1(Carry,C,w3);
+endmodule
+
+
+Testbench:-
+module FAusingHA_tb();
+reg A,B,Cin;
+wire Sum,Carry;
+FAusingHA dut(A,B,Cin,
+Sum,Carry);
+initial begin
+A=0;B=0;Cin=0;
+#10;
+$display("A=%b,B=%b,C=%b,Sum=%b,Carry=%b",A,B,Cin,Sum,Carry);
+A=0;B=0;Cin=1;
+#10;
+$display("A=%b,B=%b,C=%b,Sum=%b,Carry=%b",A,B,Cin,Sum,Carry);
+A=0;B=1;Cin=0;
+#10;
+$display("A=%b,B=%b,C=%b,Sum=%b,Carry=%b",A,B,Cin,Sum,Carry);
+A=0;B=1;Cin=1;
+#10;
+$display("A=%b,B=%b,C=%b,Sum=%b,Carry=%b",A,B,Cin,Sum,Carry);
+A=1;B=0;Cin=0;
+#10;
+$display("A=%b,B=%b,C=%b,Sum=%b,Carry=%b",A,B,Cin,Sum,Carry);
+A=1;B=0;Cin=1;
+#10;
+$display("A=%b,B=%b,C=%b,Sum=%b,Carry=%b",A,B,Cin,Sum,Carry);
+A=1;B=1;Cin=0;
+#10;
+$display("A=%b,B=%b,C=%b,Sum=%b,Carry=%b",A,B,Cin,Sum,Carry);
+A=1;B=1;Cin=1;
+#10;
+$display("A=%b,B=%b,C=%b,Sum=%b,Carry=%b",A,B,Cin,Sum,Carry);
+$finish();
+end
+endmodule
