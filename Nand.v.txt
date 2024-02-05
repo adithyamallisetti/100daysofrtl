@@ -1,0 +1,27 @@
+Nand.v
+
+///Date:-01/01/2024
+module Nand_gate(
+input a,b, output y_not,y_and,y_or,y_nor,y_xor,
+y_xnor);
+wire w1,w2,w3,w4,w5,w6,w7,w8,w9,w10,w11,w12,w13;
+nand g1(y_not,a,a);
+nand g2(w1,a,b);
+nand g3(y_and,w1,w1);
+nand g4(w2,a,a);
+nand g5(w3,b,b);
+nand g6(y_or,w1,w2);
+nand g7(w4,a,a);
+nand g8(w5,b,b);
+nand g9(w6,w4,w5);
+nand g10(y_nor,w6,w6);
+nand g11(w7,a,b);
+nand g12(w8,a,w7);
+nand g13(w9,b,w7);
+nand g14(y_xor,w8,w9);
+nand g15(w10,a,b);
+nand g16(w11,a,w10);
+nand g17(w12,b,w10);
+nand g18(w13,w11,w12);
+nand g19(y_xnor,w13,w13);
+endmodule
